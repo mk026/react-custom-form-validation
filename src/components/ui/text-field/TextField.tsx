@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, InputHTMLAttributes } from "react";
 
-const TextField: FC = () => {
-  return <div>TextField</div>;
+const TextField: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
+  return <input {...props} />;
 };
 
 export default TextField;
