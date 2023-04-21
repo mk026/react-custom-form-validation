@@ -9,7 +9,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 const TextField: FC<TextFieldProps> = ({ label, error, message, ...props }) => {
   return (
     <>
-      <label style={{ color: error ? "red" : "white" }}>
+      <label style={{ color: error ? "red" : "black" }}>
         {label}
         <input {...props} />
       </label>
