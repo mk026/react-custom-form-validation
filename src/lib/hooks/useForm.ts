@@ -6,20 +6,36 @@ import {
   useState,
 } from "react";
 
-import { Schema } from "../utils/schema";
+import { Schema } from "../utils/types";
 
 export const useForm = (schema: Schema) => {
   const [isValid, setIsValid] = useState(true);
   const [formState, setFormState] = useState(schema);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateField = (name: string) => {
-    console.log(`Validating ${name} field`);
+  const resetFieldErrors = (name: string) => {
+    setErrors((prev) => {
+      const errors = { ...prev };
+      delete errors[name];
+      return errors;
+    });
+  };
+  const validateField = (name: string, value: string) => {
+    const { validators } = formState[name];
+    resetFieldErrors(name);
+    for (const validator of validators) {
+      const error = validator(name, value);
+      if (error) {
+        setErrors((prev) => ({ ...prev, [name]: error }));
+        setIsValid(false);
+      }
+    }
   };
   const validateForm = () => {
     setIsValid(true);
     for (const name in formState) {
-      validateField(name);
-      if (formState[name].errors.length) {
+      validateField(name, formState[name].value);
+      if (errors[name]) {
         setIsValid(false);
       }
     }
@@ -30,10 +46,13 @@ export const useForm = (schema: Schema) => {
       ...prev,
       [name]: { ...prev[name], value },
     }));
-    validateField(name);
+    if (errors[name]) {
+      validateField(name, value);
+    }
   };
   const handleReset = () => {
     setFormState(schema);
+    setErrors({});
     setIsValid(true);
   };
   const handleFocus = (name: string) => (e: FocusEvent<HTMLInputElement>) => {
@@ -43,7 +62,7 @@ export const useForm = (schema: Schema) => {
     }));
   };
   const handleBlur = (name: string) => (e: FocusEvent<HTMLInputElement>) => {
-    validateField(name);
+    validateField(name, formState[name].value);
   };
   const register = (name: string): InputHTMLAttributes<HTMLInputElement> => ({
     value: formState[name].value,
@@ -67,6 +86,7 @@ export const useForm = (schema: Schema) => {
     };
 
   return {
+    errors,
     register,
     isValid,
     handleReset,
