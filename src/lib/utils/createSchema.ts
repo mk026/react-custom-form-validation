@@ -1,13 +1,14 @@
-import { Field, Schema, Validator } from "./types";
+import { Field, Schema, SchemaConfig } from "./types";
 
-export const createSchema = (config: Record<string, Validator[]>) => {
+export const createSchema = (config: SchemaConfig) => {
   const schema: Schema = {};
   for (const name in config) {
     const field: Field = {
       name,
       value: "",
       isTouched: false,
-      validators: config[name],
+      isRequired: config[name].isRequired,
+      validators: config[name].validators,
     };
     schema[name] = field;
   }

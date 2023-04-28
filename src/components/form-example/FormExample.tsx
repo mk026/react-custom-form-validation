@@ -5,22 +5,37 @@ import { createSchema } from "../../lib/utils/createSchema";
 import {
   isEmail,
   isInteger,
-  isRequired,
-  isString,
+  maxLength,
+  minLength,
 } from "../../lib/utils/validators";
 import Form from "../ui/form";
 import TextField from "../ui/text-field";
 import Button from "../ui/button";
 
 const exampleValidationSchema = createSchema({
-  name: [isRequired(), isString({ min: 3, max: 50 })],
-  age: [isRequired(), isInteger()],
-  password: [isRequired(), isString({ min: 8, max: 100 })],
-  email: [
-    isRequired(),
-    isEmail({ message: "Please provide a valid email address" }),
-  ],
-  bio: [isString({ max: 5 })],
+  name: {
+    isRequired: true,
+    validators: [minLength(3), maxLength(50)],
+  },
+  age: {
+    isRequired: true,
+    validators: [isInteger()],
+  },
+  password: {
+    isRequired: true,
+    validators: [minLength(8), maxLength(100)],
+  },
+  confirmPassword: {
+    isRequired: true,
+    validators: [minLength(8), maxLength(100)],
+  },
+  email: {
+    isRequired: true,
+    validators: [isEmail("Please provide a valid email address")],
+  },
+  bio: {
+    validators: [minLength(5)],
+  },
 });
 
 const FormExample: FC = () => {
@@ -51,6 +66,13 @@ const FormExample: FC = () => {
         label="Password"
         error={!!errors["password"]}
         message={errors["password"]}
+      />
+      <TextField
+        {...register("confirmPassword")}
+        type="password"
+        label="Password"
+        error={!!errors["confirmPassword"]}
+        message={errors["confirmPassword"]}
       />
       <TextField
         {...register("email")}

@@ -21,7 +21,10 @@ export const useForm = (schema: Schema) => {
     });
   };
   const validateField = (name: string, value: string) => {
-    const { validators } = formState[name];
+    const { isRequired, validators } = formState[name];
+    if (!value && !isRequired) {
+      return;
+    }
     resetFieldErrors(name);
     for (const validator of validators) {
       const error = validator(name, value);
@@ -72,7 +75,8 @@ export const useForm = (schema: Schema) => {
   });
 
   const handleSubmit =
-    (handler: (values: any) => void) => (event: FormEvent<HTMLFormElement>) => {
+    (handler: (values: Record<string, string>) => void) =>
+    (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       validateForm();
       if (!isValid) {
