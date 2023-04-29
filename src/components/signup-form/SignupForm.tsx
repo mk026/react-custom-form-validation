@@ -1,53 +1,16 @@
 import { FC } from "react";
 
-import { useForm } from "../../lib/hooks/useForm";
-import { createSchema } from "../../lib/utils/createSchema";
-import {
-  isEmail,
-  isInteger,
-  maxLength,
-  minLength,
-} from "../../lib/utils/validators";
 import Form from "../ui/form";
 import TextField from "../ui/text-field";
 import Button from "../ui/button";
-
-const exampleValidationSchema = createSchema({
-  name: {
-    isRequired: true,
-    validators: [minLength(3), maxLength(50)],
-  },
-  age: {
-    isRequired: true,
-    validators: [isInteger()],
-  },
-  password: {
-    isRequired: true,
-    validators: [minLength(8), maxLength(100)],
-  },
-  confirmPassword: {
-    isRequired: "Please confirm your password",
-    validators: [minLength(8), maxLength(100)],
-  },
-  email: {
-    isRequired: true,
-    validators: [isEmail("Please provide a valid email address")],
-  },
-  bio: {
-    validators: [minLength(5)],
-  },
-});
+import { useSignupForm } from "../../hooks/useSignupForm";
 
 const FormExample: FC = () => {
-  const { errors, register, isValid, handleSubmit, handleReset } = useForm(
-    exampleValidationSchema
-  );
-  const submitHandler = (values: any) => {
-    console.log(values);
-  };
+  const { handleSubmit, handleReset, errors, register, isValid } =
+    useSignupForm();
 
   return (
-    <Form onSubmit={handleSubmit(submitHandler)} onReset={handleReset}>
+    <Form onSubmit={handleSubmit} onReset={handleReset}>
       <TextField
         {...register("name")}
         label="Name"
