@@ -1,18 +1,17 @@
-export interface Schema extends Record<string, Field> {}
+export type Validator = {
+  (name: string, value: string): string | void;
+};
 
-export interface SchemaConfig extends Record<string, FieldConfig> {}
-
-export interface FieldConfig {
-  isRequired?: boolean | string;
-  validators: Validator[];
-}
-
-export interface Field extends FieldConfig {
+export type Field = {
   name: string;
   value: string;
   isTouched: boolean;
-}
+  isRequired?: boolean | string;
+  validators: Validator[];
+};
 
-export interface Validator {
-  (name: string, value: string): string | void;
-}
+export type FieldConfig = Pick<Field, "isRequired" | "validators">;
+
+export type Schema = Record<string, Field>;
+
+export type SchemaConfig = Record<string, FieldConfig>;
