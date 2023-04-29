@@ -13,10 +13,6 @@ export interface Field extends FieldConfig {
   isTouched: boolean;
 }
 
-export interface ValidatorFactory {
-  (...options: any): Validator;
-}
-
 export interface Validator {
   (name: string, value: string): string | void;
 }

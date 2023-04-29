@@ -1,6 +1,6 @@
-import { ValidatorFactory } from "./types";
+import { createValidator } from "./createValidator";
 
-export const minLength: ValidatorFactory =
+export const minLength = createValidator(
   (length: number, message?: string) => (name, value) => {
     if (value.length < length) {
       return (
@@ -8,9 +8,10 @@ export const minLength: ValidatorFactory =
         `${name} length must be equal to or longer than ${length} characters`
       );
     }
-  };
+  }
+);
 
-export const maxLength: ValidatorFactory =
+export const maxLength = createValidator(
   (length: number, message?: string) => (name, value) => {
     if (value.length > length) {
       return (
@@ -18,25 +19,25 @@ export const maxLength: ValidatorFactory =
         `${name} length must be equal to or shorter than ${length} characters`
       );
     }
-  };
+  }
+);
 
-export const isNumber: ValidatorFactory =
-  (message?: string) => (name, value) => {
-    if (value && Number.isNaN(+value)) {
-      return message || `${name} must be a valid number`;
-    }
-  };
+export const isNumber = createValidator((message?: string) => (name, value) => {
+  if (Number.isNaN(+value)) {
+    return message || `${name} must be a valid number`;
+  }
+});
 
-export const isInteger: ValidatorFactory =
+export const isInteger = createValidator(
   (message?: string) => (name, value) => {
-    if (value && !Number.isInteger(+value)) {
+    if (!Number.isInteger(+value)) {
       return message || `${name} must be a valid integer`;
     }
-  };
+  }
+);
 
-export const isEmail: ValidatorFactory =
-  (message?: string) => (name, value) => {
-    if (value && !/^\S+@\S+\.\S+$/.test(value)) {
-      return message || `${name} is not a valid email address`;
-    }
-  };
+export const isEmail = createValidator((message?: string) => (name, value) => {
+  if (!/^\S+@\S+\.\S+$/.test(value)) {
+    return message || `${name} is not a valid email address`;
+  }
+});
