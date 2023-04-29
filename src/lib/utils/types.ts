@@ -3,7 +3,7 @@ export interface Schema extends Record<string, Field> {}
 export interface SchemaConfig extends Record<string, FieldConfig> {}
 
 export interface FieldConfig {
-  isRequired?: boolean;
+  isRequired?: boolean | string;
   validators: Validator[];
 }
 

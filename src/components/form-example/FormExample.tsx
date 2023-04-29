@@ -26,7 +26,7 @@ const exampleValidationSchema = createSchema({
     validators: [minLength(8), maxLength(100)],
   },
   confirmPassword: {
-    isRequired: true,
+    isRequired: "Please confirm your password",
     validators: [minLength(8), maxLength(100)],
   },
   email: {

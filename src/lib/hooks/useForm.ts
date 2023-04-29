@@ -25,6 +25,13 @@ export const useForm = (schema: Schema) => {
     if (!value && !isRequired) {
       return;
     }
+    if (!value && isRequired) {
+      const error =
+        typeof isRequired === "string"
+          ? isRequired
+          : `${name} is a required field`;
+      setErrors((prev) => ({ ...prev, [name]: error }));
+    }
     resetFieldErrors(name);
     for (const validator of validators) {
       const error = validator(name, value);
