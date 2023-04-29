@@ -1,10 +1,10 @@
-import FormExample from "./components/form-example";
+import SignupForm from "./components/signup-form";
 import Layout from "./components/layout";
 
 function App() {
   return (
     <Layout>
-      <FormExample />
+      <SignupForm />
     </Layout>
   );
 }
