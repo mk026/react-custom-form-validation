@@ -1,4 +1,4 @@
-import { createValidator } from "./createValidator";
+import { createValidator } from "../utils/createValidator";
 
 export const minLength = createValidator(
   (length: number, message?: string) => (name, value) => {

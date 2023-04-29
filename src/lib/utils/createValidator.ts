@@ -1,4 +1,4 @@
-import { Validator } from "./types";
+import { Validator } from "../types";
 
 export const createValidator = <
   F extends (...options: any) => Validator,

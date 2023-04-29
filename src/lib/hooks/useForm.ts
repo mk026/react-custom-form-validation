@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 
-import { Schema } from "../utils/types";
+import { Schema } from "../types";
 
 export const useForm = (schema: Schema) => {
   const [isValid, setIsValid] = useState(true);

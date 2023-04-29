@@ -1,10 +1,5 @@
 import { createSchema } from "../lib/utils/createSchema";
-import {
-  isEmail,
-  isInteger,
-  maxLength,
-  minLength,
-} from "../lib/utils/validators";
+import { isEmail, isInteger, maxLength, minLength } from "../lib/validators";
 
 export const signupValidationSchema = createSchema({
   name: {

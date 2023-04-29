@@ -1,4 +1,4 @@
-import { Field, Schema, SchemaConfig } from "./types";
+import { Field, Schema, SchemaConfig } from "../types";
 
 export const createSchema = (config: SchemaConfig) => {
   const schema: Schema = {};
