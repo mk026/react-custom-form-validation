@@ -1,5 +1,7 @@
 import { FC, InputHTMLAttributes } from "react";
 
+import classes from "./TextField.module.css";
+
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: boolean;
@@ -7,14 +9,22 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const TextField: FC<TextFieldProps> = ({ label, error, message, ...props }) => {
+  const messageStyles = [classes.message];
+  const inputStyles = [classes.input];
+
+  if (error) {
+    messageStyles.push(classes.error);
+    inputStyles.push(classes.error);
+  }
+
   return (
-    <>
-      <label style={{ color: error ? "red" : "black" }}>
+    <div className={classes.wrapper}>
+      <label className={classes.label}>
         {label}
-        <input {...props} />
+        <input className={inputStyles.join(" ")} {...props} />
       </label>
-      {message && <span style={{ color: "darkgray" }}>{message}</span>}
-    </>
+      {message && <span className={messageStyles.join(" ")}>{message}</span>}
+    </div>
   );
 };
 

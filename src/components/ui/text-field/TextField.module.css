@@ -1,0 +1,29 @@
+.wrapper {
+  margin: 0.7rem 0;
+}
+
+.input {
+  box-sizing: border-box;
+  font: inherit;
+
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  width: 100%;
+  display: block;
+
+  border: 1px solid #464646;
+  border-radius: 0.2rem;
+}
+
+.label {
+  color: #2a2a2a;
+}
+
+.message {
+  font-size: 0.8rem;
+}
+
+.error {
+  color: #f42828;
+  border-color: #f42828;
+}
