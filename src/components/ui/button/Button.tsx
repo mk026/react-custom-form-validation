@@ -8,14 +8,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
 }
 
-const Button: FC<ButtonProps> = ({ children, variant, ...props }) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  variant,
+  className,
+  ...props
+}) => {
+  const styles = [classes.button];
+  if (variant) {
+    styles.push(classes[variant]);
+  }
+  if (className) {
+    styles.push(className);
+  }
+
   return (
-    <button
-      className={
-        variant ? classes.button + " " + classes[variant] : classes.button
-      }
-      {...props}
-    >
+    <button className={styles.join(" ")} {...props}>
       {children}
     </button>
   );
