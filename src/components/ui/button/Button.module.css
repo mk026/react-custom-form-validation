@@ -1,0 +1,25 @@
+.button {
+  font: inherit;
+
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #464646;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
+
+.warning {
+  background-color: orange;
+}
+
+.info {
+  background-color: blue;
+}
