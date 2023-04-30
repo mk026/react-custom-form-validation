@@ -14,6 +14,7 @@ const FormExample: FC = () => {
 
   return (
     <Card className={classes.wrapper}>
+      <h2 className={classes["form-title"]}>Signup Form Example</h2>
       <Form onSubmit={handleSubmit} onReset={handleReset}>
         <TextField
           {...register("name")}
@@ -54,7 +55,11 @@ const FormExample: FC = () => {
           error={!!errors["bio"]}
           message={errors["bio"]}
         />
-        <Button type="submit" disabled={!isValid}>
+        <Button
+          type="submit"
+          disabled={!isValid}
+          className={classes["submit-btn"]}
+        >
           Submit
         </Button>
         <Button type="reset">Reset</Button>

@@ -3,3 +3,15 @@
   padding: 1rem;
   width: 400px;
 }
+
+.form-title {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #464646;
+
+  margin: 1rem 0;
+}
+
+.submit-btn {
+  margin-right: 1rem;
+}
