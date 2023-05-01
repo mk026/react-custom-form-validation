@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { useSignupForm } from "../../hooks/useSignupForm";
-import Form from "../ui/form";
 import TextField from "../ui/text-field";
 import Button from "../ui/button";
 import Card from "../ui/card/Card";
@@ -15,7 +14,7 @@ const FormExample: FC = () => {
   return (
     <Card className={classes.wrapper}>
       <h2 className={classes["form-title"]}>Signup Form Example</h2>
-      <Form onSubmit={handleSubmit} onReset={handleReset}>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
         <TextField
           {...register("name")}
           label="Name"
@@ -63,7 +62,7 @@ const FormExample: FC = () => {
           Submit
         </Button>
         <Button type="reset">Reset</Button>
-      </Form>
+      </form>
     </Card>
   );
 };
