@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useSignupForm } from "../../hooks/useSignupForm";
 import TextField from "../ui/text-field";
 import Button from "../ui/button";
-import Card from "../ui/card/Card";
+import Card from "../ui/card";
 
 import classes from "./SignupForm.module.css";
 
