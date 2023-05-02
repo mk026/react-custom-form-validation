@@ -1,8 +1,8 @@
-import { FC, HTMLAttributes, PropsWithChildren } from "react";
+import { FC, HTMLAttributes } from "react";
 
 import classes from "./Card.module.css";
 
-interface CardProps extends PropsWithChildren, HTMLAttributes<HTMLDivElement> {}
+interface CardProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Card: FC<CardProps> = ({ children, className, ...props }) => {
   return (
