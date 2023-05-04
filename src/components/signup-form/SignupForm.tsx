@@ -57,11 +57,11 @@ const FormExample: FC = () => {
         <Button
           type="submit"
           disabled={!isValid}
-          className={classes["submit-btn"]}
+          className={classes["signup-btn"]}
         >
-          Submit
+          Signup
         </Button>
-        <Button type="reset">Reset</Button>
+        <Button type="reset">Clear</Button>
       </form>
     </Card>
   );
