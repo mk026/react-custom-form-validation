@@ -3,6 +3,7 @@ import {
   FocusEvent,
   FormEvent,
   InputHTMLAttributes,
+  useEffect,
   useState,
 } from "react";
 
@@ -12,6 +13,11 @@ export const useForm = (schema: Schema) => {
   const [isValid, setIsValid] = useState(true);
   const [formState, setFormState] = useState(schema);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const hasErrors = Object.keys(errors).length;
+    setIsValid(hasErrors ? false : true);
+  }, [errors]);
 
   const resetFieldErrors = (name: string) => {
     setErrors((prev) => {
@@ -23,7 +29,7 @@ export const useForm = (schema: Schema) => {
   const validateField = (name: string, value: string) => {
     const { isRequired, validators } = formState[name];
     if (!value && !isRequired) {
-      return;
+      return true;
     }
     if (!value && isRequired) {
       const error =
@@ -31,24 +37,27 @@ export const useForm = (schema: Schema) => {
           ? isRequired
           : `${name} is a required field`;
       setErrors((prev) => ({ ...prev, [name]: error }));
+      return false;
     }
     resetFieldErrors(name);
     for (const validator of validators) {
       const error = validator(name, value);
       if (error) {
         setErrors((prev) => ({ ...prev, [name]: error }));
-        setIsValid(false);
+        return false;
       }
     }
+    return true;
   };
   const validateForm = () => {
-    setIsValid(true);
+    let formIsValid = true;
     for (const name in formState) {
-      validateField(name, formState[name].value);
-      if (errors[name]) {
-        setIsValid(false);
+      let fieldIsValid = validateField(name, formState[name].value);
+      if (!fieldIsValid) {
+        formIsValid = false;
       }
     }
+    return formIsValid;
   };
   const handleChange = (name: string) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -63,7 +72,6 @@ export const useForm = (schema: Schema) => {
   const handleReset = () => {
     setFormState(schema);
     setErrors({});
-    setIsValid(true);
   };
   const handleFocus = (name: string) => (e: FocusEvent<HTMLInputElement>) => {
     setFormState((prev) => ({
@@ -85,8 +93,8 @@ export const useForm = (schema: Schema) => {
     (handler: (values: Record<string, string>) => void) =>
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      validateForm();
-      if (!isValid) {
+      const formIsValid = validateForm();
+      if (!formIsValid) {
         return;
       }
       const values = Object.entries(formState).reduce(
