@@ -4,10 +4,12 @@
   margin: 0;
   padding: 1rem 2rem;
 
-  background-color: #d3d3d3;
+  border-bottom: 5px solid #aeaeae;
+  background-color: #e1e1e1;
 }
 
 .title {
+  font-size: 2rem;
   color: #414141;
 
   margin: 0;
