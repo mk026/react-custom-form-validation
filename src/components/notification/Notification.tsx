@@ -13,9 +13,9 @@ const Notification: FC = () => {
     <Modal
       isOpen={isOpen}
       onClose={toggleNotification}
-      className={classes.notifiaction}
+      className={classes.notification}
     >
-      <h3>Successfuly submitted form</h3>
+      <h3>Successfully submitted form</h3>
       {Object.entries(data).map(([name, value]) => (
         <p key={name}>{`${name}: ${value}`}</p>
       ))}
