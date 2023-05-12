@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, createContext, useState } from "react";
 export interface INotificationContext {
   isOpen: boolean;
   toggleNotification: () => void;
-  setData: (...args: any[]) => void;
+  setData: (data: Record<string, string>) => void;
   data: Record<string, string>;
 }
 

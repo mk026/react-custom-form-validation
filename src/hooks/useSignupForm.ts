@@ -6,7 +6,7 @@ export const useSignupForm = () => {
   const { handleSubmit, ...formState } = useForm(signupValidationSchema);
   const { setData, toggleNotification } = useNotification();
 
-  const submitHandler = (values: any) => {
+  const submitHandler = (values: Record<string, string>) => {
     setData(values);
     toggleNotification();
   };
