@@ -7,7 +7,6 @@ export const useSignupForm = () => {
   const { setData, toggleNotification } = useNotification();
 
   const submitHandler = (values: any) => {
-    console.log(values);
     setData(values);
     toggleNotification();
   };
