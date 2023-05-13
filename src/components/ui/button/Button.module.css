@@ -8,6 +8,13 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  color: #464646;
+
+  background-color: #dfdfdf;
+  cursor: not-allowed;
+}
+
 .success {
   background-color: green;
 }
