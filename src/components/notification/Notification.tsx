@@ -16,9 +16,12 @@ const Notification: FC = () => {
       className={classes.notification}
     >
       <h3>Successfully submitted form</h3>
-      {Object.entries(data).map(([name, value]) => (
-        <p key={name}>{`${name}: ${value}`}</p>
-      ))}
+      <div className={classes.values}>
+        {Object.entries(data).map(([name, value]) => (
+          <p key={name}>{`${name}: ${value}`}</p>
+        ))}
+      </div>
+
       <Button onClick={toggleNotification}>Close</Button>
     </Modal>
   );
