@@ -37,7 +37,7 @@ const FormExample: FC = () => {
         <TextField
           {...register("confirmPassword")}
           type="password"
-          label="Password"
+          label="Confirm Password"
           error={!!errors["confirmPassword"]}
           message={errors["confirmPassword"]}
         />
