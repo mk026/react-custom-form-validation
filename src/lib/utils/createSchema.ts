@@ -8,6 +8,7 @@ export const createSchema = (config: SchemaConfig) => {
       value: "",
       isTouched: false,
       isRequired: config[name].isRequired,
+      match: config[name].match,
       validators: config[name].validators,
     };
     schema[name] = field;
