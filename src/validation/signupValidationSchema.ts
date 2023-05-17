@@ -17,6 +17,10 @@ export const signupValidationSchema = createSchema({
   confirmPassword: {
     isRequired: "Please confirm your password",
     validators: [minLength(8), maxLength(100)],
+    match: {
+      to: "password",
+      message: "Passwords are not equal",
+    },
   },
   email: {
     isRequired: true,
