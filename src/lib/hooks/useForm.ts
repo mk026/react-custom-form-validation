@@ -27,7 +27,7 @@ export const useForm = (schema: Schema) => {
     });
   };
   const validateField = (name: string, value: string) => {
-    const { isRequired, validators } = formState[name];
+    const { isRequired, validators, match } = formState[name];
     if (!value && !isRequired) {
       return true;
     }
@@ -38,6 +38,15 @@ export const useForm = (schema: Schema) => {
           : `${name} is a required field`;
       setErrors((prev) => ({ ...prev, [name]: error }));
       return false;
+    }
+    if (match && formState[match.to]) {
+      if (value !== formState[match.to].value) {
+        setErrors((prev) => ({
+          ...prev,
+          [name]: match.message || `${name} and ${match.to} are not equal`,
+        }));
+        return false;
+      }
     }
     resetFieldErrors(name);
     for (const validator of validators) {
