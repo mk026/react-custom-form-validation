@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { useNotification } from "../../hooks/useNotification";
 import Modal from "../ui/modal";
+import SubmittedData from "./submitted-data";
 import Button from "../ui/button";
 
 import classes from "./Notification.module.css";
@@ -15,14 +16,11 @@ const Notification: FC = () => {
       onClose={toggleNotification}
       className={classes.notification}
     >
-      <h3>Successfully submitted form</h3>
-      <div className={classes.values}>
-        {Object.entries(data).map(([name, value]) => (
-          <p key={name}>{`${name}: ${value}`}</p>
-        ))}
-      </div>
-
-      <Button onClick={toggleNotification}>Close</Button>
+      <h3 className={classes.title}>Successfully submitted form</h3>
+      <SubmittedData data={data} />
+      <Button className={classes.button} onClick={toggleNotification}>
+        Close
+      </Button>
     </Modal>
   );
 };

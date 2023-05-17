@@ -1,7 +1,15 @@
 .notification {
+  text-align: center;
+
   padding: 2rem;
 }
 
-.values {
-  background-color: #fcfcfc;
+.title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.button {
+  display: block;
+  margin-left: auto;
 }
