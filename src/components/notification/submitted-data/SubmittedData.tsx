@@ -1,14 +1,16 @@
 import { FC } from "react";
 
+import classes from "./SubmittedData.module.css";
+
 interface SubmittedDataProps {
   data: Record<string, string>;
 }
 
 const SubmittedData: FC<SubmittedDataProps> = ({ data }) => {
   return (
-    <div>
-      <table>
-        <caption>Submitted values</caption>
+    <div className={classes.values}>
+      <table className={classes.table}>
+        <caption className={classes.caption}>Submitted values</caption>
         <thead>
           <tr>
             <th>Field Name</th>

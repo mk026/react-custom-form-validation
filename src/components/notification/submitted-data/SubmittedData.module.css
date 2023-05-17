@@ -1,0 +1,28 @@
+.values {
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: #cfcfcf;
+}
+
+.table td,
+.table th {
+  padding: 0.5rem;
+
+  border: 2px solid #cfcfcf;
+}
+
+.caption {
+  font-size: 1.2rem;
+
+  margin-bottom: 0.5rem;
+}
